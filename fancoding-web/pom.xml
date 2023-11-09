@@ -33,6 +33,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
+        </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -46,6 +52,7 @@
         </dependencies>
     </dependencyManagement>
 
+<!--    多配置文件管理-->
     <profiles>
         <profile>
             <id>dev</id>
@@ -68,6 +75,7 @@
 <!--        定义打包的名称-->
         <finalName>fancoding</finalName>
 
+<!--        定义打包的配置文件引入-->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

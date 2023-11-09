@@ -1,0 +1,15 @@
+knife4j:
+#  控制是否启用 Knife4j 的功能
+  enable: true
+  openapi:
+    title: 我的API文档
+    description:
+    email: bjcpwnn@126.com
+    concat: 王楠楠
+    group:
+      test1:
+        group-name: 后台接口
+        api-rule: package
+        api-rule-resources:
+          - com.south.fancoding.web.demos.swagger
+          - com.south.fancoding.web.demos.mail
