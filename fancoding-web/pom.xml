@@ -99,22 +99,44 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+
+<!--           打包时将依赖 jar 放到 lib目录下-->
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-                <configuration>
-                    <mainClass>com.example.fancoding.web.FancodingWebApplication</mainClass>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.2.0</version> <!-- 替换为你需要的版本号 -->
                 <executions>
                     <execution>
-                        <id>repackage</id>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
                         <goals>
-                            <goal>repackage</goal>
+                            <goal>copy-dependencies</goal>
                         </goals>
+                        <configuration>
+                            <!-- 指定依赖项的输出目录 -->
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <!-- 排除不需要的依赖项 -->
+<!--                            <excludeArtifactIds>unwanted-artifact</excludeArtifactIds>-->
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
+<!--        打包时，应用jar包内不包括依赖jar-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.example.fancoding.web.FancodingWebApplication</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
